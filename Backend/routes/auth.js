@@ -67,6 +67,7 @@ router.post('/login', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -75,16 +76,27 @@ router.post('/login', [
     try {
         let user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({ erros: "Ivalid login credentials" })
+            success=false;
+            return res.status(400).json({ error: "Ivalid login credentials" })
         }
         const passwordCompare = await bcrypt.compare(password, user.password)
         if (!passwordCompare) {
-            return res.status(400).json({ erros: "Ivalid login credentials" })
+            success = false
+            return res.status(400).json({success, error: "Ivalid login credentials" })
         }
-    } catch (error) {
-        res.status(500).send("Some error occured");
-    }
-    res.json({ hi: "logged in" })
+        const data = {
+            user: {
+              id: user.id
+            }
+          }
+          const authtoken = jwt.sign(data, JWT_SECRET);
+          success = true;
+          res.json({ success, authtoken })
+      
+        } catch (error) {
+          console.error(error.message);
+          res.status(500).send("Internal Server Error");
+        }
 })
 
 // route for getting userdetails
