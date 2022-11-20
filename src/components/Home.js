@@ -1,14 +1,14 @@
 import { React } from 'react'
-import AddNote from './AddNote'
 import Notes from './Notes'
 
 
-const Home = () => {
+const Home = (props) => {
+  const {showalert}=props
   return (
     <div>
     
-      <Notes></Notes>
-     
+      <Notes showalert={showalert}></Notes>
+
     </div>
 
   )

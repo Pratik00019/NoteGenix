@@ -22,6 +22,7 @@ router.post('/', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Enter a valid password').isLength({ min: 5 }),
 ], async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -29,7 +30,8 @@ router.post('/', [
     try {
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ errors: "A user exist with this email already" });
+            success=false
+            return res.status(400).json({ success,errors: "A user exist with this email already" });
         }
 
         const salt = await bcrypt.genSaltSync(10);
@@ -53,9 +55,9 @@ router.post('/', [
                 id: user.id,
             }
         }
-
+        success=true
         var authtoken = jwt.sign(data, JWT_SECRET);
-        res.json({ authtoken })
+        res.json({ success,authtoken })
     } catch (error) {
         console.log(error.message);
         res.status(500).send("Some error occured");
@@ -77,7 +79,7 @@ router.post('/login', [
         let user = await User.findOne({ email })
         if (!user) {
             success=false;
-            return res.status(400).json({ error: "Ivalid login credentials" })
+            return res.status(400).json({ success,error: "Ivalid login credentials" })
         }
         const passwordCompare = await bcrypt.compare(password, user.password)
         if (!passwordCompare) {

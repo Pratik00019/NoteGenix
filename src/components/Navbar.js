@@ -1,9 +1,17 @@
 import { React, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
     // useLocation gives the location of the path
     let location = useLocation();
+
+    let navigate =useNavigate();
+    const handleclick=()=>{
+        localStorage.removeItem('token');
+        navigate('./login');
+        props.showalert("Logged out successfully","success")
+    }
     useEffect(() => {
         // Google Analytics
         console.log(location.pathname);
@@ -28,10 +36,10 @@ const Navbar = () => {
                         </ul>
 
                     </div>
-                    <form className='d-flex'>
+                    {!localStorage.getItem('token')?<form className='d-flex'>
                         <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
                         <Link className="btn btn-primary" to="/signup" role="button">Signup</Link>
-                    </form>
+                    </form> : <button className="btn btn-primary" onClick={handleclick}>Logout</button>}
                 </div>
             </nav>
 
