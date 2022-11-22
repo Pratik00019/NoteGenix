@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,6 +20,11 @@ function App() {
 
   const [alert, setAlert] = useState(null);
 
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   document.body.style.backgroundColor="#9A616D";
+  // });
+
   const showalert = (message, type) => {
     setAlert({
       msg: message,
@@ -30,6 +36,7 @@ function App() {
   }
   return (
     <>
+    
       <NoteState>
         <Router>
           <Navbar showalert={showalert}/>
@@ -40,6 +47,8 @@ function App() {
               </Route>
               <Route exact path="/" element={<Home showalert={showalert} />}>
               </Route>
+                {/* <Route exact path="/" element={<Test showalert={showalert} />}>
+              </Route> */}
               <Route exact path="/login" element={<Login showalert={showalert} />}>
               </Route>
               <Route exact path="/signup" element={<Signup showalert={showalert}/>}>

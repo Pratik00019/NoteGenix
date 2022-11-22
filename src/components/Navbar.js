@@ -12,15 +12,25 @@ const Navbar = (props) => {
         navigate('./login');
         props.showalert("Logged out successfully","success")
     }
+
+    const signupcolor=()=>{
+        console.log("hisds")
+        document.body.style.backgroundColor="white";
+    }
+
+    const logincolor=()=>{
+        console.log("hisds")
+        document.body.style.backgroundColor="#9A616D";
+    }
     useEffect(() => {
         // Google Analytics
         console.log(location.pathname);
     }, [location]);
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg  navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="/">NoteGenix</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -37,8 +47,8 @@ const Navbar = (props) => {
 
                     </div>
                     {!localStorage.getItem('token')?<form className='d-flex'>
-                        <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-                        <Link className="btn btn-primary" to="/signup" role="button">Signup</Link>
+                        <Link className="btn btn-primary mx-2" to="/login" role="button"  onClick={logincolor}>Login</Link>
+                        <Link className="btn btn-primary" to="/signup" role="button" onClick={signupcolor}>Signup</Link>
                     </form> : <button className="btn btn-primary" onClick={handleclick}>Logout</button>}
                 </div>
             </nav>
