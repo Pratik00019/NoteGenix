@@ -6,21 +6,11 @@ const Navbar = (props) => {
     // useLocation gives the location of the path
     let location = useLocation();
 
-    let navigate =useNavigate();
-    const handleclick=()=>{
+    let navigate = useNavigate();
+    const handleclick = () => {
         localStorage.removeItem('token');
         navigate('./login');
-        props.showalert("Logged out successfully","success")
-    }
-
-    const signupcolor=()=>{
-        console.log("hisds")
-        document.body.style.backgroundColor="white";
-    }
-
-    const logincolor=()=>{
-        console.log("hisds")
-        document.body.style.backgroundColor="#9A616D";
+        props.showalert("Logged out successfully", "success")
     }
     useEffect(() => {
         // Google Analytics
@@ -46,9 +36,9 @@ const Navbar = (props) => {
                         </ul>
 
                     </div>
-                    {!localStorage.getItem('token')?<form className='d-flex'>
-                        <Link className="btn btn-primary mx-2" to="/login" role="button"  onClick={logincolor}>Login</Link>
-                        <Link className="btn btn-primary" to="/signup" role="button" onClick={signupcolor}>Signup</Link>
+                    {!localStorage.getItem('token') ? <form className='d-flex'>
+                        <Link className="btn btn-primary mx-2" to="/login" role="button"> Login</Link>
+                        <Link className="btn btn-primary" to="/signup" role="button" >Signup</Link>
                     </form> : <button className="btn btn-primary" onClick={handleclick}>Logout</button>}
                 </div>
             </nav>

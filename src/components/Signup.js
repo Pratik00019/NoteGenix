@@ -11,6 +11,7 @@ import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Signup = (props) => {
+    
 
     const { showalert } = props
 
@@ -41,7 +42,17 @@ const Signup = (props) => {
         }
     }
     return (
+        <>
         <div className="container">
+        <div className='light x1'></div>
+            <div className='light x2'></div>
+            <div className='light x3'></div>
+            <div className='light x4'></div>
+            <div className='light x5'></div>
+            <div className='light x6'></div>
+            <div className='light x7'></div>
+            <div className='light x8'></div>
+            <div className='light x9'></div>
             <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
                 <MDBRow>
                     <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
@@ -51,11 +62,8 @@ const Signup = (props) => {
                             <span style={{ color: 'hsl(218, 81%, 75%)' }}>to save your notes</span>
                         </h1>
 
-                        <p className='px-3' style={{ color: 'hsl(218, 81%, 85%)' }}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-                            quibusdam tempora at cupiditate quis eum maiores libero
-                            veritatis? Dicta facilis sint aliquid ipsum atque?
+                        <p className='px-2' style={{ color: 'hsl(218, 81%, 85%)' }}>
+                            Welcome , Get ready to save your important notes without being afraid of getting your notes viewed by others.
                         </p>
 
                     </MDBCol>
@@ -79,7 +87,7 @@ const Signup = (props) => {
                                 <MDBInput wrapperClass='mb-4' label='Password' id='password' name='password' type='password' onChange={onChange} />
 
 
-                            
+
                                 <button type="button" className="btn btn-primary" size="lg" onClick={handleClick}>Sign Up</button>
 
 
@@ -91,7 +99,8 @@ const Signup = (props) => {
                 </MDBRow>
 
             </MDBContainer>
-            </div>
+        </div>
+        </>
     );
 }
 

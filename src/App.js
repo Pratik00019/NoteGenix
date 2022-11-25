@@ -1,5 +1,5 @@
 import './App.css';
-import { useState,useEffect } from 'react';
+import { useState,} from 'react';
 
 import {
   BrowserRouter as Router,
@@ -18,12 +18,7 @@ import Signup from './components/Signup';
 
 function App() {
 
-  const [alert, setAlert] = useState(null);
-
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   document.body.style.backgroundColor="#9A616D";
-  // });
+  const [alert, setAlert] = useState(null);  
 
   const showalert = (message, type) => {
     setAlert({
@@ -35,7 +30,7 @@ function App() {
     }, 2000);
   }
   return (
-    <>
+    <>  
     
       <NoteState>
         <Router>

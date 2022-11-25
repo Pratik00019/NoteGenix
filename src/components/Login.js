@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState ,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import {
@@ -14,7 +14,12 @@ import {
   from 'mdb-react-ui-kit';
 
 
+
 const Login = (props) => {
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title="NoteGenix"
+  });
 
   const { showalert } = props
 
@@ -23,6 +28,7 @@ const Login = (props) => {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
+
   const handleClick = async (e) => {
     e.preventDefault();
 

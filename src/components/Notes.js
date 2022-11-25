@@ -21,6 +21,7 @@ const Notes = (props) => {
             navigate('/login')
         }
     }, [])
+    
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" })
     const ref = useRef(null)
     const updateNote = (currentnote) => {
@@ -79,7 +80,7 @@ const Notes = (props) => {
             </div>
             <div className="row my-3">
   
-                <h2>Your Notes</h2>
+                <h1>Your Notes</h1>
                 {notes.map((note) => {
                     return <Noteitem key={note._id} note={note} updateNote={updateNote} showalert={showalert} />
                 })}
